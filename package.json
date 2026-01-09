@@ -1,0 +1,27 @@
+{
+  "name": "gadgethub-automation",
+  "version": "1.0.0",
+  "description": "Playwright automation tests for gadgethub login scenarios",
+  "main": "index.js",
+  "scripts": {
+    "test": "cucumber-js features/**/*.feature && node generate-report.js",
+    "test:parallel": "cucumber-js features/**/*.feature --parallel 2 && node generate-report.js",
+    "test:playwright": "npx playwright test",
+    "report": "node generate-report.js && start cucumber-report.html",
+    "install:browsers": "npx playwright install"
+  },
+  "keywords": [
+    "playwright",
+    "automation",
+    "testing",
+    "gadgethub"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.5.0",
+    "@playwright/test": "^1.41.0",
+    "cucumber-html-reporter": "^7.2.0",
+    "playwright-bdd": "^8.4.2"
+  }
+}
