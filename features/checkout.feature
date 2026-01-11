@@ -8,7 +8,7 @@ Feature: Checkout Process
     And I have added items to my cart
     And I am on the cart page
 
-  @checkout @smoke @e2e @happy-path @debug
+  @checkout @smoke @e2e @happy-path 
   Scenario: Complete checkout with valid information
     When I click "Checkout" button on cart page
     And I fill in the checkout information:
@@ -47,7 +47,7 @@ Feature: Checkout Process
 
   @checkout @functional @negative
   Scenario: Cancel checkout on overview page
-    When I click "Checkout" button on checkout page
+    When I click "Checkout" button on cart page
     And I fill in the checkout information with valid data
     And I click "Continue" button on checkout step 1
     Then I should see the checkout overview page

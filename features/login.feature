@@ -6,7 +6,7 @@ Feature: Gadget Hub Login Functionality
   Background:
     Given I am on the Gadget Hub login page
 
-  @login @positive @smoke @debug
+  @login @positive @smoke 
   Scenario: Successful login with default user
     When I login with username "default_user" and password "welcome_123"
     Then I should be redirected to the products page

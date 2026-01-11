@@ -1,6 +1,6 @@
 # Gadget Hub Test Automation Framework
 
-A comprehensive test automation framework for Gadget Hub using **Cucumber BDD**, **Playwright**, and the **Page Object Model** pattern. Supports both Gherkin-based BDD scenarios and traditional Playwright test specs.
+A comprehensive test automation framework for Gadget Hub using **Cucumber BDD**, **Playwright**, **Page Object Model**, and **API Testing**. Supports both UI testing and API endpoint validation.
 
 ## 🏗️ Project Structure
 
@@ -18,8 +18,14 @@ gadgethub-automation/
 ├── pages/                     # Page Object Model
 │   ├── LoginPage.js          # Login page object
 │   └── ProductsPage.js       # Products page object
-├── tests/                     # Playwright spec files
-│   └── login.spec.js         # Login test suite
+├── tests/                     # Test files
+│   ├── login.spec.js         # UI Login test suite
+│   └── api/
+│       └── api.spec.js       # API test suite
+├── api-mock/                  # Mock API Server
+│   ├── server.js             # Express server
+│   ├── db.json               # Mock database
+│   └── README.md             # API documentation
 ├── testData/                  # Test data files
 │   ├── loginData.js          # Login test data
 │   └── productsData.js       # Products test data
@@ -37,25 +43,41 @@ gadgethub-automation/
 - **🥒 BDD with Cucumber** - Business-readable Gherkin scenarios
 - **🎭 Playwright** - Fast, reliable cross-browser automation
 - **📄 Page Object Model** - Maintainable, scalable test architecture
+- **🔌 API Testing** - Direct endpoint validation with mock server
 - **🔧 Centralized Configuration** - Single source of truth for URLs, selectors, credentials
 - **⚡ Dual Framework Support** - Run Cucumber BDD or Playwright specs
 - **📊 HTML Reports** - Visual test results with screenshots on failure
 
 ## 🧪 Test Coverage
 
-### ✅ Login Scenarios
+### ✅ UI Testing
+**Login Scenarios:**
 - Valid credentials (default, problem, delayed, cart_failure users)
 - Locked out user validation
 - Invalid credentials (username, password, empty fields)
 - UI element validation (inputs, buttons, placeholders)
 - Error message handling (display, close)
 
-### ✅ Products Scenarios  
+**Products Scenarios:**
 - Product listing and visibility
 - Add/remove products from cart
 - Cart count validation
 - Sorting functionality
 - Navigation and logout
+
+### ✅ API Testing
+**Endpoints Covered:**
+- **POST** `/api/auth/login` - Authentication (multiple users)
+- **POST** `/api/auth/logout` - Session termination
+- **GET** `/api/products` - Retrieve all products
+- **GET** `/api/products/:id` - Retrieve specific product
+
+**Test Users:**
+- `default_user` / `welcome_123`
+- `image_error_user` / `welcome_123`
+- `delayed_login_user` / `welcome_123`
+- `cart_failure_user` / `welcome_123`
+- `account_locked_user` / `welcome_123` (should fail with 403)
 
 ## 🚀 Prerequisites
 
@@ -83,7 +105,7 @@ npm run install:browsers
 
 ## 🎯 Running Tests
 
-### Cucumber BDD Tests:
+### Cucumber BDD Tests (UI):
 
 ```bash
 # Run all Cucumber scenarios
@@ -98,10 +120,10 @@ npm run report
 # Run specific tag
 npx cucumber-js --tags "@smoke"
 npx cucumber-js --tags "@login"
-npx cucumber-js --tags "@debug"
+npx cucumber-js --tags "@regression"
 ```
 
-### Playwright Spec Tests:
+### Playwright Spec Tests (UI):
 
 ```bash
 # Run all Playwright tests
@@ -119,6 +141,29 @@ npx playwright test --debug
 # View Playwright report
 npx playwright show-report
 ```
+
+### API Tests:
+
+**Step 1: Start the Mock API Server** (in one terminal)
+```bash
+npm run api:start
+```
+Server will run on `http://localhost:3000`
+
+**Step 2: Run API Tests** (in another terminal)
+```bash
+# Run all API tests
+npm run test:api
+
+# View API test report
+npx playwright show-report
+```
+
+**Available API Endpoints:**
+- `POST http://localhost:3000/api/auth/login`
+- `POST http://localhost:3000/api/auth/logout`
+- `GET http://localhost:3000/api/products`
+- `GET http://localhost:3000/api/products/:id`
 
 ## 📝 Configuration
 

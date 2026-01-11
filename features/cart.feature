@@ -43,7 +43,7 @@ Feature: Shopping Cart
     And I click "Checkout" button on cart page
     Then I should be redirected to the checkout information page
 
-  @cart @ui @debug
+  @cart @ui 
   Scenario: View cart icon badge with item count
     Given I have added "2" items to my cart
     When I navigate to any page

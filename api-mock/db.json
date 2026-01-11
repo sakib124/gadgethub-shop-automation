@@ -1,0 +1,91 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "default_user",
+      "password": "welcome_123",
+      "locked": false,
+      "token": "mock-token-default-user"
+    },
+    {
+      "id": 2,
+      "username": "image_error_user",
+      "password": "welcome_123",
+      "locked": false,
+      "token": "mock-token-image-error-user"
+    },
+    {
+      "id": 3,
+      "username": "delayed_login_user",
+      "password": "welcome_123",
+      "locked": false,
+      "token": "mock-token-delayed-user"
+    },
+    {
+      "id": 4,
+      "username": "cart_failure_user",
+      "password": "welcome_123",
+      "locked": false,
+      "token": "mock-token-cart-failure-user"
+    },
+    {
+      "id": 5,
+      "username": "account_locked_user",
+      "password": "welcome_123",
+      "locked": true,
+      "token": null
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Wireless Bluetooth Headphones",
+      "description": "Premium quality wireless headphones with noise cancellation",
+      "price": 79.99,
+      "image": "headphones.jpg",
+      "category": "audio"
+    },
+    {
+      "id": 2,
+      "name": "Smart Fitness Watch",
+      "description": "Track your fitness goals with this advanced smartwatch",
+      "price": 149.99,
+      "image": "watch.jpg",
+      "category": "wearables"
+    },
+    {
+      "id": 3,
+      "name": "Mechanical Keyboard",
+      "description": "RGB mechanical gaming keyboard with blue switches",
+      "price": 89.99,
+      "image": "keyboard.jpg",
+      "category": "peripherals"
+    },
+    {
+      "id": 4,
+      "name": "4K Webcam",
+      "description": "Crystal clear 4K video for streaming and calls",
+      "price": 129.99,
+      "image": "webcam.jpg",
+      "category": "peripherals"
+    },
+    {
+      "id": 5,
+      "name": "Portable SSD 1TB",
+      "description": "Fast and reliable external storage",
+      "price": 99.99,
+      "image": "ssd.jpg",
+      "category": "storage"
+    },
+    {
+      "id": 6,
+      "name": "Wireless Mouse",
+      "description": "Ergonomic wireless mouse with precision tracking",
+      "price": 39.99,
+      "image": "mouse.jpg",
+      "category": "peripherals"
+    }
+  ],
+  "carts": [],
+  "orders": []
+}

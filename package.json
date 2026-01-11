@@ -7,6 +7,8 @@
     "test": "cucumber-js features/**/*.feature && node generate-report.js",
     "test:parallel": "cucumber-js features/**/*.feature --parallel 2 && node generate-report.js",
     "test:playwright": "npx playwright test",
+    "test:api": "npx playwright test tests/api/",
+    "api:start": "node api-mock/server.js",
     "report": "node generate-report.js && start cucumber-report.html",
     "install:browsers": "npx playwright install"
   },
@@ -22,6 +24,8 @@
     "@cucumber/cucumber": "^12.5.0",
     "@playwright/test": "^1.41.0",
     "cucumber-html-reporter": "^7.2.0",
+    "express": "^5.2.1",
+    "json-server": "^1.0.0-beta.3",
     "playwright-bdd": "^8.4.2"
   }
 }

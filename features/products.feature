@@ -9,7 +9,7 @@ Rule: Default user product page functionality
     When I login with username "default_user" and password "welcome_123"
     Then I should be redirected to the products page
 
-  @products @ui @smoke @debug
+  @products @ui @smoke 
   Scenario: Verify products page layout and elements
     Then I should see the products page title "Products"
     And I should see the cart icon
