@@ -19,24 +19,24 @@ const products = {
   keyboard: {
     name: 'Mechanical Keyboard',
     price: '$89.99',
-    description: 'RGB backlit mechanical gaming keyboard with customizable keys. Built for gamers and programmers who want tactile precision and style.'
+    description: 'RGB backlit mechanical gaming keyboard with customizable keys. Built for gamers and programmers who want precision and style.'
   },
   
   powerBank: {
     name: 'Portable Power Bank',
-    price: '$29.99',
-    description: '20000mAh high-capacity portable charger with fast charging technology. Never run out of battery when you\'re on the go.'
+    price: '$34.99',
+    description: '20000mAh high-capacity portable charger with fast charging technology. Never run out of battery on your devices when you\'re on the go.'
   },
   
   usbHub: {
     name: 'USB-C Hub Adapter',
-    price: '$49.99',
-    description: '7-in-1 multiport adapter with HDMI, USB 3.0, SD card reader, and more. Essential accessory for modern laptops and tablets.'
+    price: '$45.99',
+    description: '7-in-1 multiport adapter with HDMI, USB 3.0, SD card reader and more. Essential accessory for modern laptops and tablets.'
   },
   
   mouse: {
     name: 'Wireless Mouse',
-    price: '$19.99',
+    price: '$29.99',
     description: 'Ergonomic wireless mouse with adjustable DPI and silent clicking. Designed for comfort during long work sessions.'
   }
 };
@@ -65,8 +65,8 @@ const expectedProductOrder = {
     'Portable Power Bank',
     'Mechanical Keyboard'
   ],
-  priceLowHigh: [19.99, 29.99, 49.99, 79.99, 89.99, 149.99],
-  priceHighLow: [149.99, 89.99, 79.99, 49.99, 29.99, 19.99]
+  priceLowHigh: [29.99, 34.99, 45.99, 79.99, 89.99, 149.99],
+  priceHighLow: [149.99, 89.99, 79.99, 45.99, 34.99, 29.99]
 };
 
 const buttonStates = {
@@ -78,7 +78,7 @@ const menuLinks = {
   allItems: 'All Items',
   about: 'About',
   logout: 'Logout',
-  resetApp: 'Reset App State'
+  clearCart: 'Clear Cart'
 };
 
 module.exports = {

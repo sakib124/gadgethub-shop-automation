@@ -40,8 +40,6 @@ gadgethub-automation/
 - **🔧 Centralized Configuration** - Single source of truth for URLs, selectors, credentials
 - **⚡ Dual Framework Support** - Run Cucumber BDD or Playwright specs
 - **📊 HTML Reports** - Visual test results with screenshots on failure
-- **🛡️ Error Handling** - Comprehensive try-catch blocks in page objects
-- **🎯 Maximized Browser** - Chrome runs in maximized window mode
 
 ## 🧪 Test Coverage
 

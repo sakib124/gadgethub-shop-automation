@@ -1,8 +1,9 @@
 const { URLS, SELECTORS, ERROR_MESSAGES } = require('../config/constants');
+const BasePage = require('./BasePage');
 
-class LoginPage {
+class LoginPage extends BasePage {
   constructor(page) {
-    this.page = page;
+    super(page);
     
     // Locators
     this.usernameInput = page.locator(SELECTORS.LOGIN.USERNAME_INPUT);
@@ -13,7 +14,6 @@ class LoginPage {
     // Product page elements (to verify successful login)
     this.productsContainer = page.locator(SELECTORS.PRODUCTS.CONTAINER);
     this.logo = page.locator(SELECTORS.PRODUCTS.LOGO);
-    this.shoppingCartLink = page.locator(SELECTORS.PRODUCTS.CART_ICON);
   }
 
   /**
@@ -21,11 +21,7 @@ class LoginPage {
    * @throws {Error} If navigation fails
    */
   async goto() {
-    try {
-      await this.page.goto(URLS.LOGIN_PAGE);
-    } catch (error) {
-      throw new Error(`${ERROR_MESSAGES.PAGE_OBJECT.NAVIGATION_FAILED}: ${error.message}`);
-    }
+    await super.goto(URLS.LOGIN_PAGE);
   }
 
   /**
@@ -50,11 +46,7 @@ class LoginPage {
    * @throws {Error} If error message element not found
    */
   async getErrorMessage() {
-    try {
-      return await this.errorMessage.textContent();
-    } catch (error) {
-      throw new Error(`${ERROR_MESSAGES.PAGE_OBJECT.ELEMENT_NOT_FOUND}: Error message`);
-    }
+    return await this.getText(this.errorMessage);
   }
 
   /**
@@ -62,11 +54,7 @@ class LoginPage {
    * @returns {Promise<boolean>} True if error message is visible
    */
   async isErrorMessageVisible() {
-    try {
-      return await this.errorMessage.isVisible();
-    } catch (error) {
-      return false;
-    }
+    return await this.isVisible(this.errorMessage);
   }
 
   /**
@@ -74,44 +62,7 @@ class LoginPage {
    * @returns {Promise<boolean>} True if logged in successfully
    */
   async isLoggedIn() {
-    try {
-      return await this.productsContainer.isVisible();
-    } catch (error) {
-      return false;
-    }
-  }
-
-  /**
-   * Get the current page URL
-   * @returns {string} Current URL
-   */
-  getCurrentUrl() {
-    return this.page.url();
-  }
-
-  /**
-   * Check if logo is visible
-   * @returns {Promise<boolean>} True if logo is visible
-   */
-  async isLogoVisible() {
-    try {
-      return await this.logo.isVisible();
-    } catch (error) {
-      return false;
-    }
-  }
-
-  /**
-   * Clear login form fields
-   * @throws {Error} If clearing fields fails
-   */
-  async clearLoginForm() {
-    try {
-      await this.usernameInput.clear();
-      await this.passwordInput.clear();
-    } catch (error) {
-      throw new Error(`Failed to clear login form: ${error.message}`);
-    }
+    return await this.isVisible(this.productsContainer);
   }
 }
 

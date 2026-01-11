@@ -3,6 +3,7 @@ Feature: Gadget Hub Products Page Functionality
   I want to be able to view and interact with products
   So that I can add items to my cart and manage my shopping
 
+Rule: Default user product page functionality
   Background:
     Given I am on the Gadget Hub login page
     When I login with username "default_user" and password "welcome_123"
@@ -45,7 +46,7 @@ Feature: Gadget Hub Products Page Functionality
     When I add "Wireless Bluetooth Headphones" to the cart
     And I add "Smart Fitness Watch" to the cart
     Then the cart count should be "2"
-    When I remove "Wireless Bluetooth Headphones" from the cart
+    When I remove "Wireless Bluetooth Headphones" from the cart on products page
     Then the cart count should be "1"
     And the button for "Wireless Bluetooth Headphones" should change to "Add to cart"
     And the button for "Smart Fitness Watch" should change to "Remove"
@@ -55,8 +56,8 @@ Feature: Gadget Hub Products Page Functionality
     When I add "Wireless Bluetooth Headphones" to the cart
     And I add "Smart Fitness Watch" to the cart
     Then the cart count should be "2"
-    When I remove "Wireless Bluetooth Headphones" from the cart
-    And I remove "Smart Fitness Watch" from the cart
+    When I remove "Wireless Bluetooth Headphones" from the cart on products page
+    And I remove "Smart Fitness Watch" from the cart on products page
     Then the cart count should be "0"
 
   @products@ui @functional 
@@ -114,14 +115,6 @@ Feature: Gadget Hub Products Page Functionality
     Then all product buttons should show "Remove"
     And the cart count should match the total number of products
 
-#   @performance
-#   Scenario: Add products to cart with delayed login user
-#     Given I am on the Gadget Hub login page
-#     When I login with username "delayed_login_user" and password "welcome_123"
-#     Then I should be redirected to the products page within 10 seconds
-#     When I add "Wireless Bluetooth Headphones" to the cart
-#     Then the cart count should be "1"
-
   @products@visual @regression 
   Scenario: Verify product images are loaded
     Then all product images should be loaded
@@ -137,3 +130,50 @@ Feature: Gadget Hub Products Page Functionality
     Then the cart count should be "2"
     And the button for "Wireless Bluetooth Headphones" should change to "Remove"
     And the button for "Smart Fitness Watch" should change to "Remove"
+
+  @products @functional @session-persistence 
+  Scenario: Cart persists across user sessions
+    When I add "Wireless Bluetooth Headphones" to the cart
+    And I add "Smart Fitness Watch" to the cart
+    Then the cart count should be "2"
+    When I logout from the products page
+    And I login with username "default_user" and password "welcome_123"
+    Then I should be redirected to the products page
+    And the cart count should be "2"
+    And the button for "Wireless Bluetooth Headphones" should change to "Remove"
+    And the button for "Smart Fitness Watch" should change to "Remove"
+
+  @products @functional @clear-cart  
+  Scenario: Clear cart removes all items from cart
+    When I add "Wireless Bluetooth Headphones" to the cart
+    And I add "Smart Fitness Watch" to the cart
+    And I add "Mechanical Keyboard" to the cart
+    Then the cart count should be "3"
+    When I click on the clear cart link
+    Then the cart count should be "0"
+    And all product buttons should show "Add to cart"
+
+Rule: Image error user flows
+  @products @negative @user-specific @image-error 
+  Scenario: Image error user sees wrong product images
+    Given I am on the Gadget Hub login page
+    When I login with username "image_error_user" and password "welcome_123"
+    Then I should be redirected to the products page
+    And I should see at least 6 product cards
+    And all product images should be loaded
+    And the product "Wireless Bluetooth Headphones" should have incorrect image
+    And the product "Smart Fitness Watch" should have incorrect image
+    And the product "Mechanical Keyboard" should have incorrect image
+    And the product "Portable Power Bank" should have incorrect image
+    And the product "USB-C Hub Adapter" should have incorrect image
+    And the product "Wireless Mouse" should have incorrect image
+
+Rule: Cart failure user flows 
+  @products @negative @user-specific @cart-failure 
+  Scenario: Cart failure user cannot add items to cart
+    Given I am on the Gadget Hub login page
+    When I login with username "cart_failure_user" and password "welcome_123"
+    Then I should be redirected to the products page
+    When I add "Wireless Bluetooth Headphones" to the cart
+    Then the cart count should be "0"
+    And the button for "Wireless Bluetooth Headphones" should change to "Add to cart"

@@ -1,6 +1,7 @@
 const { test, expect } = require('@playwright/test');
 const LoginPage = require('../pages/LoginPage');
 const { users, invalidCredentials } = require('../testData/loginData');
+const { URLS } = require('../config/constants');
 
 test.describe('Gadget Hub Login - Valid Credentials', () => {
   let loginPage;
@@ -15,7 +16,7 @@ test.describe('Gadget Hub Login - Valid Credentials', () => {
     
     await loginPage.login(user.username, user.password);
     
-    await page.waitForURL('**/pages/products.html');
+    await page.waitForURL(URLS.PRODUCTS_PAGE);
     await expect(loginPage.productsContainer).toBeVisible();
     await expect(loginPage.logo).toBeVisible();
   });
@@ -25,7 +26,7 @@ test.describe('Gadget Hub Login - Valid Credentials', () => {
     
     await loginPage.login(user.username, user.password);
     
-    await page.waitForURL('**/pages/products.html');
+    await page.waitForURL(URLS.PRODUCTS_PAGE);
     await expect(loginPage.productsContainer).toBeVisible();
   });
 
@@ -34,7 +35,7 @@ test.describe('Gadget Hub Login - Valid Credentials', () => {
     
     await loginPage.login(user.username, user.password);
     
-    await page.waitForURL('**/pages/products.html', { timeout: 10000 });
+    await page.waitForURL(URLS.PRODUCTS_PAGE, { timeout: 10000 });
     await expect(loginPage.productsContainer).toBeVisible();
   });
 
@@ -43,7 +44,7 @@ test.describe('Gadget Hub Login - Valid Credentials', () => {
     
     await loginPage.login(user.username, user.password);
     
-    await page.waitForURL('**/pages/products.html');
+    await page.waitForURL(URLS.PRODUCTS_PAGE);
     await expect(loginPage.productsContainer).toBeVisible();
   });
 });
@@ -65,7 +66,7 @@ test.describe('Gadget Hub Login - Locked Out User', () => {
     const errorText = await loginPage.getErrorMessage();
     expect(errorText).toContain(user.expectedError);
     
-    expect(loginPage.getCurrentUrl()).toBe('https://gadgethub-shop.netlify.app/');
+    expect(loginPage.getCurrentUrl()).toBe(URLS.LOGIN_PAGE);
   });
 
 });
