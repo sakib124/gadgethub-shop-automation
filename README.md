@@ -2,6 +2,10 @@
 
 A comprehensive test automation framework for Gadget Hub using **Cucumber BDD**, **Playwright**, **Page Object Model**, and **API Testing**. Supports both UI testing and API endpoint validation.
 
+<img width="1919" height="909" alt="automation-results" src="https://github.com/user-attachments/assets/d8635dfe-0018-4684-b2c7-bd806ede199e" />
+
+<img width="1259" height="905" alt="gadgethub" src="https://github.com/user-attachments/assets/528f6285-1114-49ec-816a-aa3d15c70eca" />
+
 ## 🏗️ Project Structure
 
 ```
