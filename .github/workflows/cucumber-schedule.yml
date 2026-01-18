@@ -1,17 +1,11 @@
-
-
-
-
-name: Run Cucumber Tests
+name: Run Cucumber Smoke Tests (Scheduled)
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  schedule:
+    - cron: '*/10 * * * *'
 
 jobs:
-  test:
+  test-smoke-schedule:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -28,14 +22,14 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install
 
-      - name: Run Cucumber tests
-        run: npm run test
+      - name: Run Cucumber smoke tests only
+        run: npx cucumber-js --tags "@smoke"
 
       - name: Upload Cucumber Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cucumber-report
+          name: cucumber-report-smoke
           path: |
             cucumber-report.html
             cucumber-report.json
