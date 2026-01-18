@@ -1,6 +1,6 @@
 # Gadget Hub Test Automation Framework
 
-A comprehensive test automation framework for Gadget Hub using **Cucumber BDD**, **Playwright**, **Page Object Model**, and **API Testing**. Supports both UI testing and API endpoint validation.
+A comprehensive test automation framework for Gadget Hub using **Cucumber BDD**, **Playwright**, **Page Object Model**, and **API Testing**. Includes CI/CD with GitHub Actions for automated testing and reporting. Supports both UI testing and API endpoint validation.
 
 <img width="1200" height="786" alt="Screenshot 2026-01-15 201641" src="https://github.com/user-attachments/assets/d8746079-98f4-4797-946a-7f79c899bb31" />
 <img width="1259" height="905" alt="gadgethub" src="https://github.com/user-attachments/assets/528f6285-1114-49ec-816a-aa3d15c70eca" />
@@ -9,36 +9,53 @@ A comprehensive test automation framework for Gadget Hub using **Cucumber BDD**,
 
 ```
 gadgethub-automation/
+├── .github/
+│   └── workflows/               # GitHub Actions workflow YAML files
+├── api-mock/
+│   ├── db.json                  # Mock database
+│   └── server.js                # Express server (with health check)
 ├── config/
-│   └── constants.js           # Centralized configuration
-├── features/                   # Gherkin feature files (BDD)
-│   ├── login.feature          # Login scenarios
-│   └── products.feature       # Products scenarios
-├── step-definitions/          # Cucumber step implementations
-│   ├── hooks.js              # Before/After hooks
-│   ├── login.steps.js        # Login step definitions
-│   └── products.steps.js     # Products step definitions
-├── pages/                     # Page Object Model
-│   ├── LoginPage.js          # Login page object
-│   └── ProductsPage.js       # Products page object
-├── tests/                     # Test files
-│   ├── login.spec.js         # UI Login test suite
+│   └── constants.js             # Centralized configuration
+├── features/
+│   ├── cart.feature             # Cart scenarios
+│   ├── checkout.feature         # Checkout scenarios
+│   ├── login.feature            # Login scenarios
+│   └── products.feature         # Products scenarios
+├── step-definitions/
+│   ├── cart.steps.js            # Cart step definitions
+│   ├── checkout.steps.js        # Checkout step definitions
+│   ├── hooks.js                 # Before/After hooks
+│   ├── login.steps.js           # Login step definitions
+│   └── products.steps.js        # Products step definitions
+├── pages/
+│   ├── BasePage.js              # Base page object
+│   ├── CartPage.js              # Cart page object
+│   ├── CheckoutPage.js          # Checkout page object
+│   ├── LoginPage.js             # Login page object
+│   └── ProductsPage.js          # Products page object
+├── tests/
+│   ├── login.spec.js            # UI Login test suite
 │   └── api/
-│       └── api.spec.js       # API test suite
-├── api-mock/                  # Mock API Server
-│   ├── server.js             # Express server
-│   ├── db.json               # Mock database
-│   └── README.md             # API documentation
-├── testData/                  # Test data files
-│   ├── loginData.js          # Login test data
-│   └── productsData.js       # Products test data
-├── screenshots/               # Test failure screenshots (git ignored)
-├── playwright-report/         # Playwright HTML reports (git ignored)
-├── cucumber.js                # Cucumber configuration
-├── playwright.config.js       # Playwright configuration
-├── generate-report.js         # Cucumber report generator
-├── package.json              # Dependencies and scripts
-└── README.md                 # Documentation
+│       └── api.spec.js          # API test suite
+├── testData/
+│   ├── cartData.js              # Cart test data
+│   ├── checkoutData.js          # Checkout test data
+│   ├── loginData.js             # Login test data
+│   └── productsData.js          # Products test data
+├── utils/
+│   └── arrayHelpers.js          # Utility functions
+├── screenshots/                 # Test failure screenshots (git ignored)
+├── playwright-report/           # Playwright HTML reports (git ignored)
+├── cucumber-report.html         # Cucumber HTML report
+├── cucumber-report.json         # Cucumber JSON report
+├── cucumber.js                  # Cucumber configuration
+├── playwright.config.js         # Playwright configuration
+├── generate-report.js           # Cucumber report generator
+├── package.json                 # Dependencies and scripts
+├── Jenkinsfile                  # Jenkins pipeline (Linux)
+├── Jenkinsfile.windows          # Jenkins pipeline (Windows)
+├── JENKINS_SETUP.md             # Jenkins setup documentation
+└── README.md                    # Documentation
 ```
 
 ## ✨ Features
