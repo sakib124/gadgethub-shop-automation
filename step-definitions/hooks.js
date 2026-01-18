@@ -16,8 +16,9 @@ let page;
 
 // Browser lifecycle hooks
 Before(async function() {
+  const isCI = process.env.CI === 'true';
   browser = await chromium.launch({ 
-    headless: BROWSER_CONFIG.HEADLESS,
+    headless: isCI ? true : BROWSER_CONFIG.HEADLESS,
     args: BROWSER_CONFIG.ARGS
   });
   context = await browser.newContext({
