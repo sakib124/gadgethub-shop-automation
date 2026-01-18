@@ -1,3 +1,4 @@
+
 /**
  * Mock API Server for Gadget Hub
  * Simplified server for login functionality and product retrieval
@@ -9,6 +10,11 @@ const path = require('path');
 
 const app = express();
 const PORT = 3000;
+
+// Health check route for CI readiness (must be after app is initialized)
+app.get('/', (req, res) => {
+  res.status(200).send('OK');
+});
 
 // Middleware
 app.use(express.json());

@@ -29,7 +29,10 @@ jobs:
         run: npx playwright test tests/login.spec.js
 
       - name: Start Mock API Server
-        run: npm run api:start
+        run: npm run api:start &
+
+      - name: Wait for API Server
+        run: npx wait-on http://localhost:3000
 
       - name: Run Playwright api.spec.js
         run: npx playwright test tests/api/api.spec.js
