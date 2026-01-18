@@ -28,8 +28,11 @@ jobs:
       - name: Run Playwright login.spec.js
         run: npx playwright test tests/login.spec.js
 
+      - name: Start Mock API Server
+        run: npm run api:start
+
       - name: Run Playwright api.spec.js
-        run: npx start-server-and-test "npm run api:start" http://localhost:3000 "npx playwright test tests/api/api.spec.js"
+        run: npx playwright test tests/api/api.spec.js
 
       - name: Upload Playwright Report
         if: always()
