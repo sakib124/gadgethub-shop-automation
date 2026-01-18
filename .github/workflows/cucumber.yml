@@ -1,5 +1,8 @@
-name: Run Cucumber Tests
 
+
+
+
+name: Run Cucumber Tests
 
 on:
   push:
@@ -43,7 +46,6 @@ jobs:
             test-results/
             screenshots/
 
-jobs:
   test:
     runs-on: ubuntu-latest
     steps:
