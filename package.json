@@ -26,6 +26,7 @@
     "cucumber-html-reporter": "^7.2.0",
     "express": "^5.2.1",
     "json-server": "^1.0.0-beta.3",
-    "playwright-bdd": "^8.4.2"
+    "playwright-bdd": "^8.4.2",
+    "start-server-and-test": "^2.1.3"
   }
 }
